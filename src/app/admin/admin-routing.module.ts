@@ -1,21 +1,25 @@
+/*
+Author: Krishna
+This page is used for admin page routing 
+*/
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component'; 
-
-//import { AuthGuard } from '../auth/auth.guard';
+import { NewUserComponent } from './new-user/new-user.component'; 
 
 const routes: Routes = [
   {
     path: 'admin',
-    component: AdminComponent,
-   // canActivate: [AuthGuard],
+    component: AdminComponent, 
     children: [
       {
       path: '',
       children: [ 
-        { path: 'dashboard', component: AdminDashboardComponent }
+        { path: 'dashboard', component: AdminDashboardComponent },
+		 { path: 'createuser', component: NewUserComponent }
       ],
     }
   ]

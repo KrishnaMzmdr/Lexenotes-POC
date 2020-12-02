@@ -1,0 +1,108 @@
+<div class="create-page">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Create User</li>
+    </ol>
+  </nav>
+  <div class="page-content">
+    <div class="row">
+ 
+
+      <div class="col col-md-8">
+
+        <form class="create-form" [formGroup]="userForm" novalidate (ngSubmit)="onSubmit(userForm.value)">
+
+          <div class="form-group">
+            <div class="input-style">
+              <input  placeholder="First Name" class="form-control" formControlName="fname">
+            </div>
+            <ng-container *ngFor="let validation of validation_messages.fname">
+              <div  class="error" *ngIf="userForm.get('fname').hasError(validation.type) && (userForm.get('fname').dirty || userForm.get('fname').touched)">{{validation.message}}</div>
+            </ng-container>
+          </div>
+		  
+		  <div class="form-group">
+            <div class="input-style">
+              <input  placeholder="Last Name" class="form-control" formControlName="lname">
+            </div>
+            <ng-container *ngFor="let validation of validation_messages.lname">
+              <div  class="error" *ngIf="userForm.get('lname').hasError(validation.type) && (userForm.get('lname').dirty || userForm.get('lname').touched)">{{validation.message}}</div>
+            </ng-container>
+          </div>
+		  
+		   <div class="form-group">
+            <div class="input-style">
+              <input  placeholder="Email" class="form-control" formControlName="eMail">
+            </div>
+            <ng-container *ngFor="let validation of validation_messages.eMail">
+              <div  class="error" *ngIf="userForm.get('eMail').hasError(validation.type) && (userForm.get('eMail').dirty || userForm.get('eMail').touched)">{{validation.message}}</div>
+            </ng-container>
+          </div>
+		  
+		   <div class="form-group">
+            <div class="input-style">
+              <input  placeholder="Prefer Email" class="form-control" formControlName="PreferEmail">
+            </div>
+            <ng-container *ngFor="let validation of validation_messages.PreferEmail">
+              <div  class="error" *ngIf="userForm.get('PreferEmail').hasError(validation.type) && (userForm.get('PreferEmail').dirty || userForm.get('PreferEmail').touched)">{{validation.message}}</div>
+            </ng-container>
+          </div>
+		  
+		   <div class="form-group">
+            <div class="input-style">
+              <input  placeholder="Office Email" class="form-control" formControlName="OfficeEmail">
+            </div>
+            <ng-container *ngFor="let validation of validation_messages.OfficeEmail">
+              <div  class="error" *ngIf="userForm.get('OfficeEmail').hasError(validation.type) && (userForm.get('OfficeEmail').dirty || userForm.get('OfficeEmail').touched)">{{validation.message}}</div>
+            </ng-container>
+          </div> 
+
+          <div class="form-group">
+            <div class="input-style">
+              <input  placeholder="Cell Phone" class="form-control" formControlName="CellPhone">
+            </div>
+            <ng-container *ngFor="let validation of validation_messages.CellPhone">
+              <div  class="error" *ngIf="userForm.get('CellPhone').hasError(validation.type) && (userForm.get('CellPhone').dirty || userForm.get('CellPhone').touched)">{{validation.message}}</div>
+            </ng-container>
+          </div>
+
+          <div class="form-group">
+            <div class="input-style">
+              <input  type="number" placeholder="Office Phone" class="form-control" formControlName="OfficePhone">
+            </div>
+            <ng-container *ngFor="let validation of validation_messages.OfficePhone">
+              <div  class="error" *ngIf="userForm.get('OfficePhone').hasError(validation.type) && (userForm.get('OfficePhone').dirty || userForm.get('OfficePhone').touched)">{{validation.message}}</div>
+            </ng-container>
+          </div>
+		  
+		  <div class="form-group">
+            <div class="input-style">
+              <input  placeholder="Institution Name" class="form-control" formControlName="InstitutionName">
+            </div>
+            <ng-container *ngFor="let validation of validation_messages.InstitutionName">
+              <div  class="error" *ngIf="userForm.get('InstitutionName').hasError(validation.type) && (userForm.get('InstitutionName').dirty || userForm.get('InstitutionName').touched)">{{validation.message}}</div>
+            </ng-container>
+          </div>
+		  
+		  <div class="form-group">
+            <div class="input-style">
+              <input  placeholder="Alternate Institution" class="form-control" formControlName="AlternateInstitution">
+            </div>
+            <ng-container *ngFor="let validation of validation_messages.AlternateInstitution">
+              <div  class="error" *ngIf="userForm.get('AlternateInstitution').hasError(validation.type) && (userForm.get('AlternateInstitution').dirty || userForm.get('AlternateInstitution').touched)">{{validation.message}}</div>
+            </ng-container>
+          </div>
+		  
+          <div class="row submit-button-container">
+            <div class="col-md-4">
+              <button  class="submit-button btn btn-primary" color="primary" type="submit" [disabled]="!userForm.valid">Create</button>
+            </div>
+          </div>
+		  
+		  
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

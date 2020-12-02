@@ -16,15 +16,32 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+/*
+Function Name: isLoggedIn
+Author: Krishna
+This function is used to check whether the user is logged in or not. 
+*/
 
   get isLoggedIn() { 
       return this.firebaseService.isLoggedIn(); 
 	 
   }
-
+/*
+Function Name: setPageTitle
+Author: Krishna
+This function is used to set the name of the page in browser. 
+*/
   setPageTitle(title: string) {
     this.titleService.setTitle(title);
   }
+  
+/*
+Function Name: logout
+Author: Krishna
+This function is used to log out the user. 
+*/
+
 
   logout(){
 	  this.firebaseService.logout();

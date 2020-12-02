@@ -5,6 +5,7 @@ import { ReactiveFormsModule  } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { NewUserComponent } from './new-user/new-user.component';
  
 
 @NgModule({
@@ -17,6 +18,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
   declarations: [
     AdminComponent,
     AdminDashboardComponent, 
+	NewUserComponent
   ]
 })
 export class AdminModule { }

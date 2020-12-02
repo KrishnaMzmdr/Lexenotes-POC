@@ -72,26 +72,6 @@ export class LoginComponent implements OnInit {
 	  
 	  
 	
-	  
-	  
-	  /*
-    this.submitted = true;
-	
-	this.userService.getUsers().subscribe(users=>{
-		console.log(users);
-	})
-	*/
-	
-	
-   /* this.authService.login(this.username.value, this.password.value).subscribe((data) => {
-       if (this.authService.isLoggedIn) {console.log(1);
-        //  const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/admin';
-          this.router.navigateByUrl('/admin/dashboard');
-        } else {console.log(2);
-          this.loginError = 'Username or password is incorrect.';
-        }
-      },
-      error => this.error = error
-    );*/
+ 
   }
 }

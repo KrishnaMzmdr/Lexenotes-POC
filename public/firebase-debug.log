@@ -1,0 +1,51 @@
+[debug] [2020-11-27T13:37:19.727Z] ----------------------------------------------------------------------
+[debug] [2020-11-27T13:37:19.730Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Krishna\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-11-27T13:37:19.731Z] CLI Version:   8.16.2
+[debug] [2020-11-27T13:37:19.731Z] Platform:      win32
+[debug] [2020-11-27T13:37:19.731Z] Node Version:  v12.19.0
+[debug] [2020-11-27T13:37:19.743Z] Time:          Fri Nov 27 2020 19:07:19 GMT+0530 (India Standard Time)
+[debug] [2020-11-27T13:37:19.744Z] ----------------------------------------------------------------------
+[debug] [2020-11-27T13:37:19.744Z] 
+[debug] [2020-11-27T13:37:19.757Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-27T13:37:19.758Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\xampp\htdocs\Lexenotes-POC
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+  * You are initializing in an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using test-project-cd799. 
+[debug] [2020-11-27T13:37:48.940Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/test-project-cd799  
+ 
+[debug] [2020-11-27T13:37:58.398Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Fri, 27 Nov 2020 13:37:57 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+=== Database Setup
+[info] 
+[info] Firebase Realtime Database Rules allow you to define how your data should be
+[info] structured and when your data can be read from and written to.
+[info] 
+[debug] [2020-11-27T13:38:05.337Z] Error: EISDIR: illegal operation on a directory, open 'C:\xampp\htdocs\Lexenotes-POC'
+    at Object.openSync (fs.js:462:3)
+    at Object.writeFileSync (fs.js:1384:35)
+    at Config.writeProjectFile (C:\Users\Krishna\AppData\Roaming\npm\node_modules\firebase-tools\lib\config.js:156:8)
+    at C:\Users\Krishna\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\database.js:25:23
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: An unexpected error has occurred.

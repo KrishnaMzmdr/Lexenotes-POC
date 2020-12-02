@@ -11,6 +11,12 @@ export class AdminDashboardComponent implements OnInit {
 	ListUser : any = [];
  
   constructor(public firebaseService: FirebaseService) { }
+  
+/*
+Function Name: ngOnInit
+Author: Krishna
+Within this function Firebase service getusers is called which is used to get the user list from firestore database. 
+*/
 
   ngOnInit() {
 	  
