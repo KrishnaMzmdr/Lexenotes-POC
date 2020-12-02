@@ -19,7 +19,7 @@ export class GeneratePasswordComponent implements OnInit {
   error: {errorTitle: '', errorDesc: ''};
   genpassError: string;
   users: Array<any>;
-  mode: string = '';
+  id: string = '';
   
 
   constructor(
