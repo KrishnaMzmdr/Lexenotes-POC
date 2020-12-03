@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../../services/firebase/firebase.service'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,7 +11,8 @@ export class AdminDashboardComponent implements OnInit {
 	
 	ListUser : any = [];
  
-  constructor(public firebaseService: FirebaseService) { }
+  constructor(public firebaseService: FirebaseService,
+				private router: Router) { }
   
 /*
 Function Name: ngOnInit
@@ -21,10 +23,15 @@ Within this function Firebase service getusers is called which is used to get th
   ngOnInit() {
 	  
 	    let param={};
-   
-		this.firebaseService.getUsers().subscribe(result => {
-		   this.ListUser = result;
-		});
+		 this.ListUser=JSON.parse(localStorage.getItem('currentUser')); 
+		if(this.ListUser && this.ListUser.length>0){
+			this.firebaseService.getUsers().subscribe(result => {
+			   this.ListUser = result;
+			});
+		}
+		else{
+			this.router.navigateByUrl('/login');
+		}
 
     }
 

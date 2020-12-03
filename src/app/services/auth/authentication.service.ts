@@ -18,8 +18,7 @@ this.userData = angularFireAuth.authState;
 AuthSignIn(email,password) {
 	 
 this.angularFireAuth.auth.signInWithEmailAndPassword(email,password)
-.then(res => { 
- 
+.then(res => {  
 localStorage.setItem('authData', JSON.stringify(res));
 })
 .catch(err => {
@@ -36,10 +35,12 @@ isAuthenticated() {
 	}
   }
  
-AuthSignOut() {
-this.angularFireAuth
-.auth
-.signOut();
-}
 
+
+
+AuthSignOut() {
+    this.angularFireAuth.auth.signOut().then(() => {
+      localStorage.removeItem('currentUser');
+    })
+  }
 }

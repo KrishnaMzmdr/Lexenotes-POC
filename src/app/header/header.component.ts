@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { FirebaseService } from '../services/firebase/firebase.service'; 
+import { AuthenticationService } from '../services/auth/authentication.service';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from "@angular/fire/auth"; 
 
 @Component({
   selector: 'app-header',
@@ -14,7 +16,9 @@ export class HeaderComponent implements OnInit {
 
   constructor( private titleService: Title, 
    public firebaseService: FirebaseService,
-    private router: Router) { }
+   public authService: AuthenticationService,
+    private router: Router,
+	public afAuth: AngularFireAuth ) { }
 
   ngOnInit() {
 	  
@@ -47,8 +51,15 @@ This function is used to log out the user.
 */
 
 
-  logout(){
-	  this.firebaseService.logout();
+  logout123(){
+	  this.authService.AuthSignOut();
 	  this.router.navigateByUrl('/login');
+  }
+  
+    logout() {
+    return this.afAuth.auth.signOut().then(() => {
+      localStorage.removeItem('currentUser');
+       this.router.navigateByUrl('/login');
+    })
   }
 }
