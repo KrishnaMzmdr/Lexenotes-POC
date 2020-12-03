@@ -6,3 +6,4 @@
 6. Hosted on Firebase : https://test-project-cd799.web.app/
    Username : admin@demo.com
    Pwd : password123
+7. Add New User   
