@@ -15,9 +15,9 @@ constructor(private angularFireAuth: AngularFireAuth) {
 this.userData = angularFireAuth.authState;
 }
  
-AuthSignIn() {
+AuthSignIn(email,password) {
 	 
-this.angularFireAuth.auth.signInWithEmailAndPassword('admin@demo.com', 'password123')
+this.angularFireAuth.auth.signInWithEmailAndPassword(email,password)
 .then(res => { 
  
 localStorage.setItem('authData', JSON.stringify(res));

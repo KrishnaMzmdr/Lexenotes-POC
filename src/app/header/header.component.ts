@@ -10,11 +10,15 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+ ListUser : any = [];	
+
   constructor( private titleService: Title, 
    public firebaseService: FirebaseService,
     private router: Router) { }
 
   ngOnInit() {
+	  
+	  this.ListUser=JSON.parse(localStorage.getItem('currentUser'));
   }
   
 /*

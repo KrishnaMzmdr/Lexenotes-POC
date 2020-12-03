@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   returnUrl: string;
-  error: {errorTitle: '', errorDesc: ''};
+  error: string = ''; //{errorTitle: '', errorDesc: ''};
   loginError: string;
   users: Array<any>;
   
@@ -29,8 +29,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-	 
-	   this.authenticationService.AuthSignIn(); 
+	   
 	  if(this.authenticationService.isAuthenticated()){	
 	  
 		   if (this.firebaseService.isLoggedIn()) {
@@ -52,26 +51,32 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
-	  console.log(this.username.value+'===='+this.password.value);
-	  let param={
+	  
+	  this.authenticationService.AuthSignIn(this.username.value, this.password.value); 
+	  if(this.authenticationService.isAuthenticated()){
+               let param={
 	              'username':this.username.value,
 				  'password':this.password.value
 	  };
 	  this.firebaseService.searchUsers(param).subscribe(result => {
-		  this.users = result;
-
+		  this.users = result; console.log(this.users);
 		  if(this.users && this.users.length>0){
 			  localStorage.setItem('currentUser', JSON.stringify(this.users));
-			  this.router.navigateByUrl('/admin/dashboard');
-		  }
-		  else{
-				error => this.error = error
+			  if(this.users[0]['role_id']>0){ 
+				  this.router.navigateByUrl('/user/dashboard');
+			  }
+			  else{ 
+				this.router.navigateByUrl('/admin/dashboard');
+		  }}
+		  else{ 
+				error => this.error = 'Login failed';
 		  }
 		  
 		});
-	  
-	  
-	
- 
-  }
+	 }
+	 else{ 
+		 error => this.error = 'Authentication failed';
+		 
+	 }
+}
 }

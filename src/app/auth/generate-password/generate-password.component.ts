@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 import { FirebaseService } from '../../services/firebase/firebase.service'; 
 import { Observable } from 'rxjs';
+import { AngularFireAuth } from "@angular/fire/auth"; 
  
 
 @Component({
@@ -18,7 +19,7 @@ export class GeneratePasswordComponent implements OnInit {
   returnUrl: string;
   error: {errorTitle: '', errorDesc: ''};
   genpassError: string;
-  users: Array<any>;
+  msg: string = '';
   id: string = '';
   
 
@@ -27,27 +28,26 @@ export class GeneratePasswordComponent implements OnInit {
 				public firebaseService: FirebaseService,
 				private router: Router, 
 				private activatedRoute: ActivatedRoute,
-				private authenticationService:AuthenticationService
+				private authenticationService:AuthenticationService,
+				public afAuth: AngularFireAuth 
     ) { }
 
   ngOnInit() {
-	 
-	   this.authenticationService.AuthSignIn(); 
-	  if(this.authenticationService.isAuthenticated()){	
+	  
 	    this.activatedRoute.params.subscribe(routeParams => {
 			this.id = routeParams['id'];
+			
+			this.afAuth.auth.sendPasswordResetEmail(atob(this.id))
+					.then(() => {
+					  this.msg = 'Password reset email sent, check user\'s inbox.';
+					}).catch((error) => {
+					  window.alert(error)
+			})
 		});
    
 		   
-			this.genpassForm = this.fb.group({
-					  newpassword: ['', Validators.required],
-					  confirmpassword: ['', Validators.required]
-			}); 
-	  }
-	  else{
+			 
 	  
-			console.log('User Authentication failed');
-	  } 
   }
   
    get newpassword() { return this.genpassForm.get('newpassword'); }
@@ -55,21 +55,15 @@ export class GeneratePasswordComponent implements OnInit {
 
 
   onSubmit() { 
-	  if(this.newpassword.value!=this.confirmpassword.value){
-		   this.genpassError = 'Password Mismatch';
-	  }
-	  else{
-				let param={
-							  'password':btoa(this.newpassword.value) 
-				};
-		  
-				 this.firebaseService.updateUser(this.id,param)
-				.then(
-				  res => { 
-				  }
-				)
-	
-	  }
+   
+					return this.afAuth.auth.sendPasswordResetEmail(atob(this.id))
+					.then(() => {
+					  window.alert('Password reset email sent, check your inbox.');
+					}).catch((error) => {
+					  window.alert(error)
+					})
+				 
+  
 	  
   }
 }

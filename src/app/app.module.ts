@@ -14,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AuthModule } from './auth/auth.module';
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
 	AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+	UserModule
   ],
   providers: [AuthenticationService,FirebaseService],
   bootstrap: [AppComponent]

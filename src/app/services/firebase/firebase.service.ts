@@ -62,9 +62,7 @@ This service function is used to get user list according to search key from fire
 
   searchUsers(searchValue){
     return this.db.collection('users',ref => ref
-	 .where('eMail', '==', searchValue.username)
-	 .where('password', '==', btoa(searchValue.password))
-	 ).valueChanges();
+	 .where('eMail', '==', searchValue.username)).valueChanges();
   }
   
   /****
@@ -101,9 +99,8 @@ This service function is used to add new user to firestore database.
 		  OfficePhone: value.OfficePhone,
 		  InstitutionName: value.InstitutionName,
 		  AlternateInstitution: value.AlternateInstitution,
-		  password: btoa('123456'),
 		  role_id: 2,
-		  status:false,
+		  status:true,
 		  confirmationLink: 'https://test-project-cd799.web.app/generatepassword/'+btoa(value.eMail)
     });
   }

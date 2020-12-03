@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'; 
 import { Router } from '@angular/router'; 
 import { FirebaseService } from '../../services/firebase/firebase.service'; 
+import { AngularFireAuth } from "@angular/fire/auth"; 
 
 @Component({
   selector: 'app-new-user',
@@ -45,7 +46,8 @@ export class NewUserComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private router: Router,
-    public firebaseService: FirebaseService
+    public firebaseService: FirebaseService,
+	public afAuth: AngularFireAuth 
   ) { }
 
   ngOnInit() {
@@ -100,13 +102,34 @@ This function is used to submit the creation form.
 */ 
 
   onSubmit(value){
-    this.firebaseService.createUser(value)
-    .then(
-      res => {
-        this.resetFields();
-        this.router.navigate(['/home']);
-      }
-    )
+	 let psw = '123456'; 
+	 this.afAuth.auth.createUserWithEmailAndPassword(value.eMail, psw)
+      .then((result) => {
+        /* Call the SendVerificaitonMail() function when new user sign
+        up and returns promise */
+        this.SendVerificationMail();
+			this.firebaseService.createUser(value)
+				.then(
+				  res => {
+					this.resetFields();
+					this.router.navigate(['/admin/dashboard']);
+				  }
+			)
+	   
+      }).catch((error) => {
+        window.alert(error.message)
+      })
+	   
+  
   }
+  
+  SendVerificationMail() {
+    return this.afAuth.auth.currentUser.sendEmailVerification()
+    .then(() => {
+      this.router.navigate(['/admin/dashboard']);
+    })
+  }
+  
+ 
 
 }

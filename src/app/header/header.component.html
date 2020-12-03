@@ -6,29 +6,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
-     <!-- <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a routerLink="/" routerLinkActive="acitve" class="nav-link" (click)="setPageTitle('Blogger')">Home</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/page/about" routerLinkActive="acitve" class="nav-link" (click)="setPageTitle('About')">About</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/page/services" routerLinkActive="acitve" class="nav-link" (click)="setPageTitle('Services')">Services</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/contact" routerLinkActive="acitve" class="nav-link" (click)="setPageTitle('Contact')">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/blog" routerLinkActive="acitve" class="nav-link">Blog</a>
-        </li>
-      </ul>-->
+
       <ul class="navbar-nav  ml-auto">
         <li class="nav-item" *ngIf="!isLoggedIn">
           <a routerLink="/login" class="nav-link">Login</a>
         </li>
         <li class="nav-item" *ngIf="isLoggedIn">
-          <a routerLink="/admin/dashboard" class="nav-link">Admin Dashboard</a>
+          <a routerLink="/admin/dashboard" class="nav-link">Dashboard</a>
         </li>
         <li class="nav-item" *ngIf="isLoggedIn" style="cursor:pointer;">
             <a (click)="logout()" class="nav-link">Logout</a>
