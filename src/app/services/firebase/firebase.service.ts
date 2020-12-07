@@ -27,9 +27,9 @@ Author: Krishna
 This service function is used to update each user record according to key from firestore database. 
 ****/
 
-  updateUser(userkey,data){
-    data.password = data.pasword;
-    return this.db.collection('users').doc(atob(userkey)).set(data);
+  updateUser(userkey,data){ console.log(userkey);console.log(data);
+   // data.password = data.pasword;
+      return this.db.collection('users').doc(userkey).set(data);
   }
   
 /****
@@ -50,7 +50,7 @@ This service function is used to get user list from firestore database.
 
   getUsers(){
     return this.db.collection('users',ref => ref
-	 .where('role_id', '>=', 0)).valueChanges();
+	 .where('role_id', '>=', "0")).valueChanges();
   }
 
 /****
@@ -59,10 +59,12 @@ Author: Krishna
 This service function is used to get user list according to search key from firestore database. 
 ****/
 
-
-  searchUsers(searchValue){
+ 
+   searchUsers(searchValue){
     return this.db.collection('users',ref => ref
-	 .where('eMail', '==', searchValue.username)).valueChanges();
+	 .where('eMail', '==', searchValue.username)
+	 .where('status', '==', true)
+	 ).valueChanges();
   }
   
   /****
@@ -80,6 +82,10 @@ This service function is used to log in firestore database.
 
   searchUsersByAge(value){
     return this.db.collection('users',ref => ref.orderBy('age').startAt(value)).snapshotChanges();
+  }
+  
+   searchUsersByEmail(value){
+    return this.db.collection('users',ref => ref.where('eMail', '==', atob(value))).valueChanges({idField: 'customIdName'});
   }
 
 /****
@@ -99,7 +105,7 @@ This service function is used to add new user to firestore database.
 		  OfficePhone: value.OfficePhone,
 		  InstitutionName: value.InstitutionName,
 		  AlternateInstitution: value.AlternateInstitution,
-		  role_id: 2,
+		  role_id: value.role_id,
 		  status:true,
 		  confirmationLink: 'https://test-project-cd799.web.app/generatepassword/'+btoa(value.eMail)
     });
@@ -113,5 +119,10 @@ This service function is used to logout from firestore database.
   
    logout() {
     localStorage.removeItem('currentUser'); 
+  }
+  
+  
+  getRoles() {
+	   return this.db.collection('user_role',ref => ref).valueChanges();
   }
 }

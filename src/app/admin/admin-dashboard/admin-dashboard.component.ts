@@ -23,16 +23,30 @@ Within this function Firebase service getusers is called which is used to get th
   ngOnInit() {
 	  
 	    let param={};
-		 this.ListUser=JSON.parse(localStorage.getItem('currentUser')); 
-		if(this.ListUser && this.ListUser.length>0){
-			this.firebaseService.getUsers().subscribe(result => {
-			   this.ListUser = result;
-			});
+		 let currentUser=JSON.parse(localStorage.getItem('currentUser')); 
+		if(currentUser && currentUser.length>0){ 
+			if(currentUser[0]['role_id']<=0){
+				this.firebaseService.getUsers().subscribe(result => {
+				   this.ListUser = result;
+				   console.log(this.ListUser);
+				});
+			}
+			else{
+				
+			this.router.navigateByUrl('/login');
+			}
 		}
 		else{
 			this.router.navigateByUrl('/login');
 		}
 
     }
+	
+	goToEdit(emailid){
+	
+		let url = '/admin/edituser/'+btoa(emailid);
+		this.router.navigateByUrl(url);
+	
+	}
 
 }

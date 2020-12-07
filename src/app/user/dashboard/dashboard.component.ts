@@ -24,7 +24,12 @@ Within this function Firebase service getusers is called which is used to get th
 	    let param={};
 		let currentUser=JSON.parse(localStorage.getItem('currentUser'));
 		if(currentUser && currentUser.length>0){
-			this.ListUser= currentUser;
+			if(currentUser[0]['role_id']>0){
+				this.ListUser= currentUser;
+			}
+			else{
+					this.router.navigateByUrl('/login');
+			}
 		}else{
 			this.router.navigateByUrl('/login');
 		}

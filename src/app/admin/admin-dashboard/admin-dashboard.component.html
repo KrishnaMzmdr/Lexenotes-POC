@@ -9,7 +9,7 @@
         
             <div class="col-md-12"> 
 				
-<table class="table table-striped">
+<table class="table table-striped" *ngIf="ListUser && ListUser.length>0">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -19,6 +19,7 @@
 	  <th scope="col">Role</th>
 	  <th scope="col">Confirmation Link</th>
 	  <th scope="col">Status</th>
+	  <th></th>
     </tr>
   </thead>
   <tbody>
@@ -29,7 +30,8 @@
       <td>{{user.CellPhone}} </td>
 	   <td><span *ngIf="user.role_id==0">Admin</span><span *ngIf="user.role_id==1">Author</span><span *ngIf="user.role_id==2">User</span> </td>
       <td><a target="_blank" href="{{user.confirmationLink}}">Click Here</a> </td>
-      <td>{{user.status}} </td>
+      <td>{{user.status}}</td>
+	  <td style="cursor:pointer; text-decoration:underline;" (click)="goToEdit(user.eMail)">Edit</td>
     </tr>
     
   </tbody>

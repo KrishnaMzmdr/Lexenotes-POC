@@ -3,7 +3,7 @@
 
         <div class="row">
         
-            <div class="col-md-12"> 
+            <div class="col-md-12" *ngIf="ListUser && ListUser.length>0"> 
 				<div>Name: {{ListUser[0].fname}} {{ListUser[0].lname}}</div>
 				<div>Email: {{ListUser[0].eMail}}</div>
 				<div>Phone No: {{ListUser[0].CellPhone}}</div>

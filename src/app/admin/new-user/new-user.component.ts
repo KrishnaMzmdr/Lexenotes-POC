@@ -12,6 +12,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 export class NewUserComponent implements OnInit {
 
   userForm: FormGroup; 
+  AllRoles : any = [];
 
   validation_messages = {
    'fname': [
@@ -40,7 +41,10 @@ export class NewUserComponent implements OnInit {
    ],
    'AlternateInstitution': [
      { type: 'required', message: 'Alternate Institution is required.' },
-   ]
+   ],
+   'role_id': [
+     { type: 'required', message: 'Role is required.' },
+   ],
  };
 
   constructor(
@@ -51,6 +55,7 @@ export class NewUserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+	this.getRoles();  
     this.createForm();
   }
   
@@ -70,30 +75,12 @@ This function is used for creating the user addition form.
       CellPhone: ['', Validators.required ],
 	  OfficePhone: ['', Validators.required ],
       InstitutionName: ['', Validators.required ],
-      AlternateInstitution: ['', Validators.required ]
+      AlternateInstitution: ['', Validators.required ],
+	  role_id: ['', Validators.required ]
     });
   }
 
-/*
-Function Name: resetFields
-Author: Krishna
-This function is used for reseting the form fields to its initial condition. 
-*/ 
-
-  resetFields(){ 
-    this.userForm = this.fb.group({
-      fname: new FormControl('', Validators.required),
-      lname: new FormControl('', Validators.required),
-      eMail: new FormControl('', Validators.required),
-	  PreferEmail: new FormControl('', Validators.required),
-      OfficeEmail: new FormControl('', Validators.required),
-      CellPhone: new FormControl('', Validators.required),
-	  OfficePhone: new FormControl('', Validators.required),
-      InstitutionName: new FormControl('', Validators.required),
-      AlternateInstitution: new FormControl('', Validators.required)
-    });
-  }
-  
+ 
   
 /*
 Function Name: onSubmit
@@ -105,14 +92,12 @@ This function is used to submit the creation form.
 	 let psw = '123456'; 
 	 this.afAuth.auth.createUserWithEmailAndPassword(value.eMail, psw)
       .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign
-        up and returns promise */
-        this.SendVerificationMail();
+      
 			this.firebaseService.createUser(value)
 				.then(
-				  res => {
-					this.resetFields();
-					this.router.navigate(['/admin/dashboard']);
+				  res => { 
+					this.userForm.reset();
+					this.router.navigate(['/generatepassword/',btoa(value.eMail)]);
 				  }
 			)
 	   
@@ -123,13 +108,13 @@ This function is used to submit the creation form.
   
   }
   
-  SendVerificationMail() {
-    return this.afAuth.auth.currentUser.sendEmailVerification()
-    .then(() => {
-      this.router.navigate(['/admin/dashboard']);
-    })
-  }
+  
   
  
+ getRoles(){
+		this.firebaseService.getRoles().subscribe(result => {
+			   this.AllRoles = result[0]['role']; 
+		});
+  }
 
 }

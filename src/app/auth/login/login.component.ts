@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
 				  'password':this.password.value
 				  };
 				  this.firebaseService.searchUsers(param).subscribe(result => {
-					  this.users = result; console.log(this.users);
+					  this.users = result; console.log(result);
 					  if(this.users && this.users.length>0){
 						  localStorage.setItem('currentUser', JSON.stringify(this.users));
 						  if(this.users[0]['role_id']>0){ 
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
 						   }
 					  }
 					  else{ 
-							error => this.error = 'Login failed';
+							 this.loginError = 'Login failed as the user is inactive.';
 					  }
 					  
 					});

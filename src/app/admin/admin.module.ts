@@ -6,6 +6,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { NewUserComponent } from './new-user/new-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
  
 
 @NgModule({
@@ -14,11 +15,13 @@ import { NewUserComponent } from './new-user/new-user.component';
     ReactiveFormsModule,
     AdminRoutingModule,
 	
+	
   ],
   declarations: [
     AdminComponent,
     AdminDashboardComponent, 
-	NewUserComponent
+	NewUserComponent,
+	EditUserComponent
   ]
 })
 export class AdminModule { }
